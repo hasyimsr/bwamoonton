@@ -15,6 +15,15 @@ use Inertia\Inertia;
 |
 */
 
+Route::get('/admin', function () {
+    return 'Ini Admin!';
+})->middleware('role:admin')->name('admin');
+
+Route::get('/user', function () {
+    return 'Ini User!';
+})->middleware('role:user')->name('user');
+
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -28,4 +37,4 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
